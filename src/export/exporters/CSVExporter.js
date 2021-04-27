@@ -408,10 +408,8 @@ class CSVExporter extends Exporter {
         return moment(value).tz(self.timezone || 'Etc/UTC').format(`${self.dateFormat} z`);
       };
       if (submission.data.whenshouldwecallyou !== undefined) {
-          submission.data.whenshouldwecallyou = moment.utc(submission.data.whenshouldwecallyou).local().format('YYYY-MM-DD hh:mm A');
-      }
-      if (submission.data.whenshouldwecallyou2 !== undefined) {
-          submission.data.whenshouldwecallyou2 = moment.utc(submission.data.whenshouldwecallyou2).format('YYYY-MM-DD hh:mm A');
+          const convertDate = moment.utc(submission.data.whenshouldwecallyou).local().add(5,'hours').add(30,'minutes');
+          submission.data.whenshouldwecallyou = convertDate.format('YYYY-MM-DD hh:mm A');
       }
       const data = [
         submission._id.toString(),
