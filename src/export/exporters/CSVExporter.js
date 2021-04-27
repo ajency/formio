@@ -410,6 +410,9 @@ class CSVExporter extends Exporter {
       if (submission.data.whenshouldwecallyou !== undefined) {
           submission.data.whenshouldwecallyou = moment.utc(submission.data.whenshouldwecallyou).local().format('YYYY-MM-DD hh:mm A');
       }
+      if (submission.data.whenshouldwecallyou2 !== undefined) {
+          submission.data.whenshouldwecallyou2 = moment.utc(submission.data.whenshouldwecallyou2).format('YYYY-MM-DD hh:mm A');
+      }
       const data = [
         submission._id.toString(),
         // Perform this after the field data since they may set the timezone and format.
